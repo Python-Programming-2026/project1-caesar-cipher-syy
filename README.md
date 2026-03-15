@@ -31,6 +31,7 @@
 ![功能1](https://github.com/Python-Programming-2026/project1-caesar-cipher-syy/blob/main/01631b2043e4ad55c4ad59924c5c2012.png?raw=true)
 
 同理功能2可将密文破解成明文
+
 ![2](https://github.com/Python-Programming-2026/project1-caesar-cipher-syy/blob/main/a248f4a90c453d168536e73b88471b02.png?raw=true)
 
 功能3可直接得出得分最高的明文
