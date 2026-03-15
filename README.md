@@ -28,17 +28,17 @@
 使用示例
 命令行交互
 运行程序后显示欢迎界面和功能菜单，用户输入选项1即可进入加密功能，输入明文Hello World，输入步长为3，得到密文为Khoor Zruog。
-![功能1](https://github.com/Python-Programming-2026/project1-caesar-cipher-syy/blob/main/01631b2043e4ad55c4ad59924c5c2012.png?raw=true)
+![https://github.com/Python-Programming-2026/project1-caesar-cipher-syy/blob/main/01631b2043e4ad55c4ad59924c5c2012.png?raw=true](https://github.com/Python-Programming-2026/project1-caesar-cipher-syy/blob/main/images/01631b2043e4ad55c4ad59924c5c2012.png?raw=true)
 
 同理功能2可将密文破解成明文
 
-![2](https://github.com/Python-Programming-2026/project1-caesar-cipher-syy/blob/main/a248f4a90c453d168536e73b88471b02.png?raw=true)
+![(https://github.com/Python-Programming-2026/project1-caesar-cipher-syy/blob/main/a248f4a90c453d168536e73b88471b02.png?raw=true)](https://github.com/Python-Programming-2026/project1-caesar-cipher-syy/blob/main/images/a248f4a90c453d168536e73b88471b02.png?raw=true)
 
 功能3可直接得出得分最高的明文
-![3](https://github.com/Python-Programming-2026/project1-caesar-cipher-syy/blob/main/38ef54f37c8b5b826e7a1a4f134056e7.png?raw=true)
+![(https://github.com/Python-Programming-2026/project1-caesar-cipher-syy/blob/main/38ef54f37c8b5b826e7a1a4f134056e7.png?raw=true)](https://github.com/Python-Programming-2026/project1-caesar-cipher-syy/blob/main/images/38ef54f37c8b5b826e7a1a4f134056e7.png?raw=true)
 
 功能4可得出所有25种解密结果
-![4](https://github.com/Python-Programming-2026/project1-caesar-cipher-syy/blob/main/3e75a3582cedce4600553c1052528116.png?raw=true)
+![(https://github.com/Python-Programming-2026/project1-caesar-cipher-syy/blob/main/3e75a3582cedce4600553c1052528116.png?raw=true)](https://github.com/Python-Programming-2026/project1-caesar-cipher-syy/blob/main/images/3e75a3582cedce4600553c1052528116.png?raw=true)
 
 
 注意事项
