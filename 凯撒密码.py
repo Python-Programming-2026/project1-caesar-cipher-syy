@@ -7,19 +7,15 @@ def caesar_cipher(text, shift, mode='encrypt'):
     :return: 处理后的字符串
     """
     result = ""
-    # 如果是解密，反向偏移
     if mode == 'decrypt':
         shift = -shift
     
     for char in text:
         if char.isalpha():
-            # 确定 ASCII 基准 (大写 65, 小写 97)
             base = ord('A') if char.isupper() else ord('a')
-            # 计算偏移后的字符
             shifted = (ord(char) - base + shift) % 26
             result += chr(base + shifted)
         else:
-            # 非字母字符保持不变
             result += char
     return result
 
@@ -27,36 +23,130 @@ def caesar_cipher(text, shift, mode='encrypt'):
 def score_text(text):
     """
     评估文本的可读性得分（分数越高越可能是正确解密）
-    :param text: 待评估的文本
-    :return: 得分
     """
-    # 英文常见字母频率（从高到低）
     common_letters = 'etaoinshrdlcumwfgypbvkjxqz'
     
-    # 常见英文单词（用于匹配）
     common_words = {'the', 'be', 'to', 'of', 'and', 'a', 'in', 'that', 'have', 'i',
-                    'it', 'for', 'not', 'on', 'with', 'he', 'as', 'you', 'do', 'at'}
+                    'it', 'for', 'not', 'on', 'with', 'he', 'as', 'you', 'do', 'at',
+                    'hello', 'world', 'is', 'are', 'was', 'were', 'this', 'from',
+                    'has', 'had', 'will', 'would', 'could', 'should', 'my', 'your',
+                    'his', 'her', 'our', 'their', 'what', 'which', 'who', 'when',
+                    'where', 'why', 'how', 'all', 'each', 'every', 'both', 'few',
+                    'more', 'most', 'other', 'some', 'such', 'no', 'yes', 'if',
+                    'then', 'else', 'so', 'but', 'or', 'an', 'been', 'being',
+                    'am', 'can', 'may', 'must', 'shall', 'about', 'after', 'before',
+                    'just', 'know', 'take', 'come', 'see', 'want', 'look', 'use',
+                    'find', 'give', 'tell', 'work', 'call', 'try', 'ask', 'need',
+                    'feel', 'become', 'leave', 'put', 'mean', 'keep', 'let', 'begin',
+                    'seem', 'help', 'talk', 'turn', 'start', 'show', 'hear', 'play',
+                    'run', 'move', 'like', 'live', 'believe', 'hold', 'bring', 'happen',
+                    'write', 'provide', 'sit', 'stand', 'lose', 'pay', 'meet', 'include',
+                    'continue', 'set', 'learn', 'change', 'lead', 'understand', 'watch',
+                    'follow', 'stop', 'create', 'speak', 'read', 'allow', 'add', 'spend',
+                    'grow', 'open', 'walk', 'win', 'offer', 'remember', 'love', 'consider',
+                    'appear', 'buy', 'wait', 'serve', 'die', 'send', 'expect', 'build',
+                    'stay', 'fall', 'cut', 'reach', 'kill', 'remain', 'suggest', 'raise',
+                    'pass', 'sell', 'require', 'report', 'decide', 'pull', 'people',
+                    'history', 'way', 'art', 'world', 'information', 'map', 'family',
+                    'government', 'health', 'system', 'computer', 'meat', 'year', 'thanks',
+                    'music', 'person', 'reading', 'method', 'data', 'food', 'understanding',
+                    'theory', 'law', 'bird', 'literature', 'problem', 'software', 'control',
+                    'knowledge', 'power', 'ability', 'economics', 'love', 'internet',
+                    'television', 'science', 'library', 'nature', 'fact', 'product',
+                    'idea', 'temperature', 'investment', 'area', 'society', 'activity',
+                    'story', 'industry', 'media', 'thing', 'oven', 'community', 'definition',
+                    'safety', 'quality', 'development', 'language', 'management', 'player',
+                    'variety', 'video', 'week', 'security', 'country', 'exam', 'movie',
+                    'organization', 'equipment', 'physics', 'analysis', 'policy', 'series',
+                    'thought', 'basis', 'boyfriend', 'direction', 'strategy', 'technology',
+                    'army', 'camera', 'freedom', 'paper', 'environment', 'child', 'instance',
+                    'month', 'truth', 'marketing', 'university', 'writing', 'article',
+                    'department', 'difference', 'goal', 'news', 'audience', 'fishing',
+                    'growth', 'income', 'marriage', 'user', 'combination', 'failure',
+                    'meaning', 'medicine', 'philosophy', 'teacher', 'communication',
+                    'night', 'chemistry', 'disease', 'disk', 'energy', 'nation', 'road',
+                    'role', 'soup', 'advertising', 'location', 'success', 'addition',
+                    'apartment', 'education', 'math', 'moment', 'painting', 'politics',
+                    'attention', 'decision', 'event', 'property', 'shopping', 'student',
+                    'wood', 'competition', 'distribution', 'entertainment', 'office',
+                    'population', 'president', 'unit', 'category', 'cigarette', 'context',
+                    'introduction', 'opportunity', 'performance', 'driver', 'flight',
+                    'length', 'magazine', 'newspaper', 'relationship', 'teaching', 'cell',
+                    'dealer', 'debate', 'finding', 'lake', 'member', 'message', 'phone',
+                    'scene', 'appearance', 'association', 'concept', 'customer', 'death',
+                    'discussion', 'housing', 'inflation', 'insurance', 'mood', 'woman',
+                    'agreement', 'brain', 'career', 'clothing', 'company', 'conclusion',
+                    'condition', 'conference', 'congress', 'consideration', 'credit',
+                    'earth', 'girl', 'hall', 'historian', 'hospital', 'injury', 'instruction',
+                    'maintenance', 'manufacturer', 'meal', 'perception', 'pie', 'poem',
+                    'presence', 'proposal', 'reception', 'replacement', 'revolution',
+                    'river', 'son', 'speech', 'tea', 'village', 'warning', 'winner',
+                    'worker', 'writer', 'assistance', 'breath', 'buyer', 'chest', 'chocolate',
+                    'conclusion', 'contribution', 'cookie', 'courage', 'dad', 'desk',
+                    'drawer', 'establishment', 'examination', 'garbage', 'grocery', 'honey',
+                    'impression', 'improvement', 'independence', 'insect', 'inspection',
+                    'inspector', 'king', 'ladder', 'menu', 'penalty', 'piano', 'potato',
+                    'profession', 'professor', 'quantity', 'reaction', 'request', 'salary',
+                    'shame', 'shelter', 'shoe', 'silver', 'tapping', 'tissue', 'tonight',
+                    'tourist', 'toy', 'trade', 'transportation', 'tunnel', 'weekend',
+                    'welcome', 'yard'}
+    
+    common_bigrams = {'th', 'he', 'in', 'er', 'an', 're', 'on', 'at', 'en', 'nd',
+                      'ti', 'es', 'or', 'te', 'of', 'ed', 'is', 'it', 'al', 'ar',
+                      'st', 'nt', 'ng', 'se', 'ha', 'as', 'ou', 'io', 'le', 'co',
+                      'me', 'de', 'hi', 've', 'ta', 'ec', 'si', 'll', 'so', 'na',
+                      'li', 'la', 'el', 'ma', 'di', 'ye', 'fo', 'ld', 'um', 'ri',
+                      'ra', 'ru', 'ic', 'ne', 'ea', 'ro', 'ly', 'be', 'pe', 'pr',
+                      'ou', 'ow', 'un', 'ch', 'sh', 'wh', 'ph', 'gh', 'ck'}
+    
+    common_trigrams = {'the', 'and', 'tha', 'ent', 'ing', 'ion', 'tio', 'for', 'nde',
+                       'has', 'nce', 'edt', 'tis', 'oft', 'sth', 'men', 'whi', 'hel',
+                       'wor', 'ld ', 'ell', 'llo', 'rld', 'yo ', 'ou ', 'are', 'was',
+                       'wer', 'her', 'his', 'tha', 'thi', 'tho', 'you', 'wit', 'ith'}
     
     score = 0
     text_lower = text.lower()
-    
-    # 1. 字母频率评分
-    for i, char in enumerate(common_letters):
-        if char in text_lower:
-            score += (26 - i) * text_lower.count(char)
-    
-    # 2. 常见单词匹配评分
     words = text_lower.split()
+    
+    # 1. 完整单词匹配（权重最高）
     for word in words:
-        # 去除标点
         clean_word = ''.join(c for c in word if c.isalpha())
         if clean_word in common_words:
-            score += 10
+            if len(clean_word) >= 5:
+                score += 50
+            elif len(clean_word) >= 3:
+                score += 30
+            else:
+                score += 10
     
-    # 3. 字母比例评分（字母占比越高越可能是正常文本）
+    # 2. 三字母组合匹配
+    for i in range(len(text_lower) - 2):
+        trigram = text_lower[i:i+3]
+        if trigram.isalpha() and trigram in common_trigrams:
+            score += 8
+    
+    # 3. 双字母组合匹配
+    for i in range(len(text_lower) - 1):
+        bigram = text_lower[i:i+2]
+        if bigram.isalpha() and bigram in common_bigrams:
+            score += 2
+    
+    # 4. 字母频率评分
+    for i, char in enumerate(common_letters):
+        count = text_lower.count(char)
+        if count > 0:
+            score += (26 - i) * count * 0.1
+    
+    # 5. 额外加分
     alpha_count = sum(1 for c in text if c.isalpha())
-    if len(text) > 0:
-        score += (alpha_count / len(text)) * 20
+    if len(text) > 0 and alpha_count / len(text) > 0.8:
+        score += 15
+    
+    if ' ' in text and len(words) > 1:
+        score += 10
+    
+    if len(text) > 0 and text[0].isupper():
+        score += 5
     
     return score
 
@@ -64,8 +154,6 @@ def score_text(text):
 def brute_force_best(text):
     """
     暴力破解并返回最可能的结果
-    :param text: 密文
-    :return: (最佳步长，解密结果，得分)
     """
     best_shift = 0
     best_result = ""
